@@ -1,22 +1,107 @@
 {
   "updated_at": "2026-04-23",
   "epochs": [
-    { "epoch_start": "2026-01-02", "aero_minted": 3800000, "aero_price": 0.5456, "active_gauges": 515 },
-    { "epoch_start": "2026-01-09", "aero_minted": 3808000, "aero_price": 0.5000, "active_gauges": 518 },
-    { "epoch_start": "2026-01-16", "aero_minted": 3814000, "aero_price": 0.4700, "active_gauges": 520 },
-    { "epoch_start": "2026-01-23", "aero_minted": 3820000, "aero_price": 0.4300, "active_gauges": 522 },
-    { "epoch_start": "2026-01-30", "aero_minted": 3825000, "aero_price": 0.3800, "active_gauges": 525 },
-    { "epoch_start": "2026-02-06", "aero_minted": 3830000, "aero_price": 0.3154, "active_gauges": 528 },
-    { "epoch_start": "2026-02-13", "aero_minted": 3836000, "aero_price": 0.3200, "active_gauges": 530 },
-    { "epoch_start": "2026-02-20", "aero_minted": 3842000, "aero_price": 0.3300, "active_gauges": 532 },
-    { "epoch_start": "2026-02-27", "aero_minted": 3848000, "aero_price": 0.3300, "active_gauges": 535 },
-    { "epoch_start": "2026-03-05", "aero_minted": 3855000, "aero_price": 0.3353, "active_gauges": 537 },
-    { "epoch_start": "2026-03-12", "aero_minted": 3860000, "aero_price": 0.3400, "active_gauges": 538 },
-    { "epoch_start": "2026-03-19", "aero_minted": 3865000, "aero_price": 0.3300, "active_gauges": 540 },
-    { "epoch_start": "2026-03-26", "aero_minted": 3872000, "aero_price": 0.3200, "active_gauges": 539 },
-    { "epoch_start": "2026-04-02", "aero_minted": 3880000, "aero_price": 0.3174, "active_gauges": 535 },
-    { "epoch_start": "2026-04-09", "aero_minted": 3910000, "aero_price": 0.3688, "active_gauges": 502 },
-    { "epoch_start": "2026-04-16", "aero_minted": 3930000, "aero_price": 0.3998, "active_gauges": 511 },
-    { "epoch_start": "2026-04-23", "aero_minted": 3950000, "aero_price": 0.4184, "active_gauges": 503 }
+    {
+      "epoch_start": "",
+      "aero_minted": 3800862.959550721,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3809755.499436995,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3818661.9629063844,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3827591.915625322,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3836536.1019030544,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3845502.357309041,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3854490.958587522,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3863499.5162211824,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3872527.667757583,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3881574.7694710023,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3891098.044252878,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3900637.283079919,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3910198.4991691066,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3919784.6481729816,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3929389.8257967927,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3938996.1539973225,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    },
+    {
+      "epoch_start": "",
+      "aero_minted": 3948620.243775032,
+      "aero_price": 0.0,
+      "active_gauges": 0
+    }
   ]
 }

@@ -1,17 +1,683 @@
 {
   "updated_at": "2026-04-23",
-  "total_validated_delta": -653343,
-  "total_validated_delta_usd": -254716,
-  "note": "Rank 1 (vAMM-MEZO/MUSD) excluded: only 1 pre-migration epoch, baseline unreliable.",
+  "total_validated_delta": -1844541.0,
+  "total_validated_delta_usd": 0.0,
+  "note": "Rank 1 excluded: only 1 pre-migration epoch, baseline unreliable.",
   "pools": [
-    { "rank": 2,  "pool_label": "CL100-WETH/VVV",     "pre_avg": 182566, "post_avg":  62106, "delta": -120460, "delta_usd": -47051, "same_pair": false },
-    { "rank": 3,  "pool_label": "CL1-cbETH/WETH",     "pre_avg": 105581, "post_avg":   3068, "delta": -102514, "delta_usd": -39848, "same_pair": false },
-    { "rank": 4,  "pool_label": "vAMM-SUMR/USDC",     "pre_avg":  95305, "post_avg":   2135, "delta":  -93170, "delta_usd": -36213, "same_pair": false },
-    { "rank": 5,  "pool_label": "CL100-WETH/USDC",  "pre_avg": 534404, "post_avg": 441489, "delta":  -92915, "delta_usd": -37823, "same_pair": false },
-    { "rank": 6,  "pool_label": "CL100-WETH/cbBTC", "pre_avg": 251410, "post_avg": 170176, "delta":  -81235, "delta_usd": -32229, "same_pair": false },
-    { "rank": 7,  "pool_label": "vAMM-FUN/USDC",      "pre_avg":  65732, "post_avg":   3686, "delta":  -62046, "delta_usd": -24125, "same_pair": false },
-    { "rank": 8,  "pool_label": "vAMM-VIRTUAL/WETH",  "pre_avg":  70352, "post_avg":  31582, "delta":  -38770, "delta_usd": -15189, "same_pair": false },
-    { "rank": 9,  "pool_label": "vAMM-USDC/CLAWD",    "pre_avg":  36649, "post_avg":   4386, "delta":  -32262, "delta_usd": -12554, "same_pair": false },
-    { "rank": 10, "pool_label": "CL100-ZORA/USDC",    "pre_avg":  39766, "post_avg":   9795, "delta":  -29971, "delta_usd": -11685, "same_pair": false }
+    {
+      "rank": 0,
+      "pool_label": "78329e80c7999548c81c5ab93185cf1316747845",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -811725.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "5d05ef25a5f933271e1f0fdc02dc3eab6a4ea687",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -120460.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "f5550f8f0331b8caa165046667f4e6628e9e3aac",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -102514.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "c7fcac7ea12c31a43f060e27d7cf7273efbccd01",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -93170.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "f33a96b5932d9e9b9a0eda447abd8c9d48d2e0c8",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -92915.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "41b2126661c673c2bedd208cc72e85dc51a5320a",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -81235.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "72cd715cd1df473115881b6a2bcec16630aaf2a1",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -62046.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "bd62cad65b49b4ad9c7aa9b8bdb89d63221f7af5",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -38770.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "7762c1810f3e249c83130093442ed24cee6dd61f",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -32262.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "adefe661847835c6566b1caabecfcf09c586f300",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -29971.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "d29d5597c1225b874a9d9ebee693f88892942118",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -29590.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "28dcf4abc65a3e0971602bdbaa95f14ceec09a2a",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -28892.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "3cc1cf416751439bd4c8232e0b2023bf6cc2c94e",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -20527.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "519bbd1dd8c6a94c46080e24f316c14ee758c025",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -15990.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "2bed28eda5b8902ff20256ac001aa6a4beb1cec2",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -14672.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "ee096fdd7fe7a759f3e8b0855b02976cf0fd25f9",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -14079.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "0fb1dafcc2bd0bc30477ba7b96b2e8045add8a03",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -13374.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "de43127cb5381e4466a8046e1c2c2dc2d30999d7",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -13191.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "5013ea8783bfeaa8c4850a54eacd54d7a3b7f889",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -11539.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "658cef587d3d9e31def560c19c199914c07a4826",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -10625.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "648eec151f6642eb57b259a7aa0f963b826a7284",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -10528.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "2b74b62c564456c48055bd515a62594742b3f545",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -9965.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "b41228d378ae3fe96ef1b1f927856a1ca73bf903",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -9672.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "40f207ae22ecd68149f05a7efef6fec091e32177",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -9557.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "27f732a92cbdfd4047087b8aed4e0b88c29c4198",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -8891.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "8612abc6bf9735f192cd7e4005b8494dfe3d773d",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -8155.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "828622c92977a372be19f24bc5c4b5021b4b06ec",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -7432.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "57387e4639048b67c30c911a145368bc5b33fe3b",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -6968.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "12e45be50dd4f3bc430b65d399b1e3b90275661c",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -6887.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "4cbb6188c6101cacd4eb1126cc14882bd93dc3db",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -6689.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "30765db9bc45c107eb37b999ea9c34684b88f938",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -6037.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "68ba7ca9fc65c393a86d7cd00ff1b70c2882b633",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -5723.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "cb1137e326b8c48a5b8b29a5ccc19b6e8b9782d2",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -5569.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "bc24a215368b5e2a3baad4904d6c810148d2b258",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -5225.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "527b83782b2ef0c5506e79333ca709d81644952f",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -4073.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "8c44e7f913d0893cd5a3cbbb2fcd59785a7801ab",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -4011.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "84154ed7658e1e17868ecd70f256a77b80ea54c6",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -4010.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "6bf4d7e9cc3bf9fea7ee88ba7cfde9626e77efd4",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3695.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "430c09546ae9249ab75b9a4ef7b5fd9a4006d6f3",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3501.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "bda319bc7cc8f0829df39ec0fff5d1e061ffadf7",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3385.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "dfd05625d409def88acd6a60ef5f58acad1abeb5",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3356.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "88040de1f5811090b638fa70633b24a3e319d06f",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3319.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "5acc45cc02a6c4f1d7e23aa3cab7652f9db2f2c0",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3191.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "6b82714e0e4964595a97fe2b1c3ad03dbb246fdf",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3148.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "cc2714bf50f3c7174a868bec8f4d4d284a0b07cc",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3140.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "c2607b22f95d6030b9560c872661509d928c2e45",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3106.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "3de827c30391b6c75af11a946adaa83733b9ee62",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -3080.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "456979e89917f4dc1e86662fcdfd4c9766c6684d",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2885.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "f5c198ead622c29589e5d34936cfea42869bc3ac",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2787.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "26b130316314259fa5047656c6bb16fe521ea082",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2651.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "49aaafd906fb80959721c71a297b071fc0693a95",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2588.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "19c38452e702d749978ecc82ab66addf28a37af1",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2556.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "4fe3512bbbbd252b31eba69f9648c9e41f668677",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2512.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "e871a267a418c200f8b92ae21397221122b79808",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2418.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "b6abc5598a53c8432f9c849528d9d30e30c205fa",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2368.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "413112e5434c7d3b00cad0948d89dca460f6fb46",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2351.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "28047b764d603a25146a0b8a8d414740dc1e650e",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -2180.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "e897425dacd719e509f73987b289dad6cd256ee6",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1979.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "162a77d0b9064d60e626a0ee515594a422ade40d",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1916.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "7a53fd90c6fb9ffd8eebc668300fe42e151cfa02",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1915.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "937c527eb4f27030f6667078c64982b3202257d5",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1815.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "7b6964440b615ac1d31bc95681b133e112fb2684",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1797.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "6cc472a3e4e23f4e7b3188e424fb40f7bfad8a77",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1723.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "e0c13dfdc050722b5ae99a77db52c0f57af0f83d",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1679.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "474716f0164cbe5d2f55336492c51fe0bf04373e",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1628.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "fc0d4756fad40db4b71225def4eec42e9c9ef070",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1576.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "1aeeafdeab8d8f99853cd5b7a8844cc4ffe0fc70",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1567.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "96a24ab830d4ec8b1f6f04ceac104f1a3b211a01",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1555.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "f2470b185647d1fd0f432c223ab0e80e0b23dcd3",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1530.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "2c0cbf25bb64687d11ea2e4a3dc893d56ca39c10",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1506.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "c23924a846eca931ec3014253e94f15b038bd0c8",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1503.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "0099140a97acc1cc831ecb39ab5fd60fc9f6bb64",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1435.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "34d4c2189a3f5acd106731a6a236f6ffbb691577",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1432.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "8351616f224a035aa5ee6b9f74a68659701af3e9",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1415.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    },
+    {
+      "rank": 0,
+      "pool_label": "50beed7938e571a90bed95ae092febb2a85e3783",
+      "pre_avg": 0.0,
+      "post_avg": 0.0,
+      "delta": -1414.0,
+      "delta_usd": 0.0,
+      "same_pair": false
+    }
   ]
 }
