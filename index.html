@@ -410,8 +410,7 @@
     <div class="chart-card">
       <h2>Sacrifice Pool Ranking — Top 9 Losers</h2>
       <p class="chart-note">
-        Δ AERO/week: pre-migration avg vs post-launch epoch.&nbsp;
-        <span style="color:var(--accent);font-weight:600">■</span> Same trading pair — old version displaced by V3 equivalent.
+        Δ AERO/week: pre-migration avg vs post-launch epoch.
         Rank 1 (vAMM-MEZO/MUSD) excluded: single-epoch baseline unreliable.
       </p>
       <div style="position:relative;height:320px"><canvas id="chart-sacrifice"></canvas></div>
@@ -441,16 +440,18 @@
       </div>
 
       <div class="finding a-accent">
-        <div class="finding-label">Key Sacrificed Pools</div>
-        <p><strong>CL100-WETH/USDC ★</strong> and <strong>CL100-WETH/cbBTC ★</strong> —
-          old-version pools displaced by their V3 equivalents (~53% of migration gain).</p>
+        <div class="finding-label">Largest Vote Losers</div>
+        <p><strong>CL100-WETH/USDC</strong> and <strong>CL100-WETH/cbBTC</strong> —
+          large existing CL pools that saw vote dilution during the migration period.
+          Their V3 equivalents have not launched; the drop reflects broader vote reallocation, not direct displacement.</p>
       </div>
 
       <div class="verdict">
-        <strong>Verdict:</strong> V3 launch was funded by vote migration away from older
-        pool versions (CL100-WETH/USDC, CL100-WETH/cbBTC) and low-fundamental gauges
-        (WETH/VVV, cbETH/WETH, SUMR/USDC). Protocol's emission budget expanded ~2.4×
-        the migration gain — sacrifice votes dispersed broadly, not exclusively to V3 pairs.
+        <strong>Verdict:</strong> V3 launch was funded by vote reallocation away from
+        established CL pools (CL100-WETH/USDC, CL100-WETH/cbBTC) and low-fundamental gauges
+        (WETH/VVV, cbETH/WETH, SUMR/USDC). The drops in the two large CL pools are vote
+        dilution effects, not direct V3 displacement — their V3 versions had not launched.
+        Protocol's emission budget expanded ~2.4× the migration gain.
       </div>
     </div>
   </div>
