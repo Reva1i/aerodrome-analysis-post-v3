@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aerodrome V2→V3 Migration · Base Chain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <style>
+    /* ── Clay Design Tokens ── */
+    :root {
+      --bg:         #faf9f7;
+      --bg-card:    #ffffff;
+      --bg-tag:     #f0ece4;
+      --accent:     #e31c1c;
+      --accent-lo:  rgba(227,28,28,0.10);
+      --blue:       #3b82f6;
+      --blue-lo:    rgba(59,130,246,0.10);
+      --gray:       #9f9b93;
+      --gray-lo:    rgba(159,155,147,0.20);
+      --amber:      #d97706;
+      --green:      #2d6a4f;
+      --green-lo:   rgba(45,106,79,0.10);
+      --text:       #000000;
+      --text-dim:   #55534e;
+      --text-light: #9f9b93;
+      --border:     #dad4c8;
+      --border-2:   #eee9df;
+      --grid:       rgba(0,0,0,0.06);
+      --shadow:     0 1px 2px rgba(0,0,0,0.06), 0 4px 14px rgba(0,0,0,0.07);
+      --shadow-hover: 0 8px 28px rgba(0,0,0,0.13);
+      --r:          20px;
+      --r-sm:       12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-logo {
+      width: 36px; height: 36px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      font-feature-settings: "ss01","ss03";
+    }
+    .brand-title span { color: var(--accent); }
+    .brand-sub { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+    .header-right { font-size: 12px; color: var(--text-dim); text-align: right; line-height: 1.6; }
+    .header-right strong { color: var(--text); }
+
+    /* ── Epoch range banner ── */
+    .epoch-banner {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 10px 36px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .epoch-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-tag);
+      border: 1px solid var(--border-2);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-dim);
+    }
+    .epoch-pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Layout ── */
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 32px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ── Stat cards ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+      cursor: default;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      border-radius: var(--r) var(--r) 0 0;
+    }
+    .stat-card.c-blue::after  { background: var(--blue); }
+    .stat-card.c-gray::after  { background: var(--gray); }
+    .stat-card.c-green::after { background: var(--green); }
+    .stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      font-feature-settings: "ss01","ss03";
+    }
+    .stat-value.up  { color: var(--green); }
+    .stat-value.red { color: var(--accent); }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .stat-sub { font-size: 11px; color: var(--text-light); margin-top: 3px; }
+
+    /* ── Chart cards ── */
+    .chart-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px 26px;
+      box-shadow: var(--shadow);
+    }
+    .chart-card h2 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      font-feature-settings: "ss01","ss03";
+    }
+    .chart-note {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin: 6px 0 18px;
+      line-height: 1.55;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+    .legend-item { display: flex; align-items: center; gap: 7px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+    /* ── Bottom grid ── */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* ── Findings card ── */
+    .findings-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow);
+    }
+    .findings-card h2 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      font-feature-settings: "ss01","ss03";
+    }
+    .finding {
+      border-left: 2px solid var(--border);
+      padding-left: 12px;
+    }
+    .finding.a-accent { border-left-color: var(--accent); }
+    .finding.a-blue   { border-left-color: var(--blue); }
+    .finding.a-green  { border-left-color: var(--green); }
+    .finding-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 3px;
+    }
+    .finding p { font-size: 12.5px; line-height: 1.5; color: var(--text-dim); }
+    .finding strong { color: var(--text); }
+
+    /* ── Verdict ── */
+    .verdict {
+      background: #fff8f0;
+      border: 1px solid #f5d5b8;
+      border-radius: var(--r-sm);
+      padding: 13px 15px;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--text-dim);
+    }
+    .verdict strong { color: #b94a00; }
+
+    /* ── Divider ── */
+    .dashed-divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 4px 0;
+    }
+
+    /* ── Axis note ── */
+    .axis-note {
+      display: flex;
+      gap: 18px;
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    /* ── Error banner ── */
+    .error-banner {
+      background: var(--accent-lo);
+      border: 1px solid rgba(227,28,28,0.25);
+      border-radius: var(--r-sm);
+      padding: 14px 18px;
+      font-size: 13px;
+      display: none;
+    }
+    .error-banner strong { color: var(--accent); }
+    .error-banner code {
+      background: rgba(0,0,0,0.06);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 12px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px dashed var(--border);
+      padding: 18px 36px;
+      font-size: 11.5px;
+      color: var(--text-light);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .stats-grid  { grid-template-columns: repeat(2, 1fr); }
+      .bottom-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .stats-grid  { grid-template-columns: 1fr 1fr; }
+      main         { padding: 16px 16px 32px; }
+      .site-header { padding: 14px 16px; }
+      .epoch-banner { padding: 10px 16px; }
+      footer       { padding: 14px 16px; }
+    }
+    @media (max-width: 380px) {
+      .stats-grid  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-logo">A</div>
+    <div>
+      <div class="brand-title">Aerodrome <span>Finance</span></div>
+      <div class="brand-sub">V2 → V3 SlipStream Migration Analysis · Base Chain</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div>Apr 2026 · Data: <strong>Dune Analytics</strong></div>
+    <div id="updated-at"></div>
+  </div>
+</header>
+
+<!-- Epoch range banner -->
+<div class="epoch-banner" id="epoch-banner" style="display:none">
+  <span>Coverage</span>
+  <span id="epoch-range-text"></span>
+  <span id="epoch-bootstrap-pill"></span>
+  <span id="epoch-launch-pill"></span>
+</div>
+
+<main>
+
+  <div id="error-banner" class="error-banner">
+    <strong>Data unavailable.</strong> Run
+    <code>python3 -m http.server 8000</code> and open
+    <code>localhost:8000</code>, or fetch data first:
+    <code>DUNE_API_KEY=… python3 scripts/fetch_dune.py</code>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stats-grid">
+    <div class="stat-card c-green">
+      <div class="stat-value up" id="s-aero">—</div>
+      <div class="stat-label">AERO / wk Net Gain</div>
+      <div class="stat-sub">12 migrated pairs</div>
+    </div>
+    <div class="stat-card c-blue">
+      <div class="stat-value up" id="s-pct">—</div>
+      <div class="stat-label">Emission Increase</div>
+      <div class="stat-sub">Bootstrap → post-launch</div>
+    </div>
+    <div class="stat-card c-green">
+      <div class="stat-value up" id="s-usd">—</div>
+      <div class="stat-label">USD / wk Net Gain</div>
+      <div class="stat-sub" id="s-usd-sub">At launch price</div>
+    </div>
+    <div class="stat-card c-gray">
+      <div class="stat-value red" id="s-sacrifice">—</div>
+      <div class="stat-label">Sacrifice Delta</div>
+      <div class="stat-sub">Top-9 sacrifice pools</div>
+    </div>
+  </div>
+
+  <!-- Chart 1: Double incentivization -->
+  <div class="chart-card">
+    <h2>Double Incentivization — Bootstrap vs Post-Launch by Trading Pair</h2>
+    <p class="chart-note">
+      Bootstrap epoch (Apr 9): V2 gauges only &nbsp;·&nbsp;
+      Post-launch (Apr 16): same pairs receive both V2 + V3 SlipStream emissions simultaneously.
+      Left bar = bootstrap week; right bar = post-launch (V2 + V3 stacked).
+    </p>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--gray)"></div>Bootstrap V2
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--blue)"></div>Post-Launch V2
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--accent)"></div>Post-Launch V3 (SlipStream)
+      </div>
+    </div>
+    <div style="position:relative;height:300px"><canvas id="chart-emissions"></canvas></div>
+  </div>
+
+  <!-- Bottom: sacrifice + findings -->
+  <div class="bottom-grid">
+    <div class="chart-card">
+      <h2>Sacrifice Pool Ranking — Top 9 Losers</h2>
+      <p class="chart-note">
+        Δ AERO/week: pre-migration avg vs post-launch epoch.&nbsp;
+        <span style="color:var(--accent);font-weight:600">■</span> Same trading pair — old version displaced by V3 equivalent.
+        Rank 1 (vAMM-MEZO/MUSD) excluded: single-epoch baseline unreliable.
+      </p>
+      <div style="position:relative;height:320px"><canvas id="chart-sacrifice"></canvas></div>
+    </div>
+
+    <div class="findings-card">
+      <h2>Key Findings</h2>
+      <hr class="dashed-divider">
+
+      <div class="finding a-green">
+        <div class="finding-label">Migration Gain</div>
+        <p>The 12 migrated pairs gained <strong id="f-aero">—</strong> AERO/wk
+          (<strong id="f-pct">—</strong>), worth <strong id="f-usd">—</strong>/wk
+          at launch-day price.</p>
+      </div>
+
+      <div class="finding a-blue">
+        <div class="finding-label">Double-Incentivization</div>
+        <p>V3 pools launched <em>alongside</em> existing V2 gauges — not replacing them.
+          Both versions receive emissions simultaneously for the same trading pairs.</p>
+      </div>
+
+      <div class="finding a-accent">
+        <div class="finding-label">Sacrifice Source</div>
+        <p>Top-9 sacrifice pools lost <strong id="f-sacrifice">—</strong> AERO/wk combined.
+          Only ~41% of those votes funded migrated pairs; the rest dispersed broadly.</p>
+      </div>
+
+      <div class="finding a-accent">
+        <div class="finding-label">Key Sacrificed Pools</div>
+        <p><strong>CL100-WETH/USDC ★</strong> and <strong>CL100-WETH/cbBTC ★</strong> —
+          old-version pools displaced by their V3 equivalents (~53% of migration gain).</p>
+      </div>
+
+      <div class="verdict">
+        <strong>Verdict:</strong> V3 launch was funded by vote migration away from older
+        pool versions (CL100-WETH/USDC, CL100-WETH/cbBTC) and low-fundamental gauges
+        (WETH/VVV, cbETH/WETH, SUMR/USDC). Protocol's emission budget expanded ~2.4×
+        the migration gain — sacrifice votes dispersed broadly, not exclusively to V3 pairs.
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart 3: Protocol trend -->
+  <div class="chart-card">
+    <h2>Protocol Emission Trend</h2>
+    <p class="chart-note">
+      Weekly AERO minted (bars, left axis) and AERO spot price in USD (line, right axis).
+      <span style="color:rgba(227,28,28,0.55);font-weight:600">■ Bootstrap</span>&nbsp;
+      <span style="color:var(--accent);font-weight:600">■ Launch epoch</span> highlighted.
+    </p>
+    <div style="position:relative;height:220px"><canvas id="chart-protocol"></canvas></div>
+    <div class="axis-note">
+      <span>■ AERO Minted/wk (left axis)</span>
+      <span style="color:var(--amber)">● AERO Price USD (right axis)</span>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span>Data: Dune Analytics · Q-7360619 · Q-7360620 · Q-7360622</span>
+  <span>Aerodrome V2→V3 SlipStream Migration · Base Chain · Apr 2026</span>
+</footer>
+
+<script>
+/* ── Chart.js defaults (Clay-warm light theme) ── */
+Chart.defaults.animation   = { duration: 700, easing: 'easeOutQuart' };
+Chart.defaults.animations  = {
+  /* bars grow from base (y-axis) — Chart.js default, just setting timing */
+  y: { duration: 700, easing: 'easeOutQuart' },
+  /* colors fade in from transparent simultaneously */
+  backgroundColor: { type: 'color', duration: 700, from: 'transparent' },
+  borderColor:     { type: 'color', duration: 500, from: 'transparent' },
+};
+Chart.defaults.color = '#55534e';
+Chart.defaults.borderColor = 'rgba(0,0,0,0.07)';
+Chart.defaults.font.family = "'Plus Jakarta Sans', system-ui, sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.font.weight = '500';
+
+/* Shared tooltip style — visible on cream/white background */
+const TT = {
+  backgroundColor: '#f0ece4',
+  borderColor: '#bdb7ae',
+  borderWidth: 1,
+  padding: 10,
+  titleColor: '#000',
+  bodyColor: '#55534e',
+  titleFont: { weight: '700', size: 12 },
+  bodyFont:  { size: 12 },
+  cornerRadius: 8,
+};
+
+const C = {
+  accent:   '#e31c1c',
+  accentLo: 'rgba(227,28,28,0.14)',
+  blue:     '#3b82f6',
+  blueLo:   'rgba(59,130,246,0.14)',
+  gray:     '#9f9b93',
+  grayLo:   'rgba(159,155,147,0.25)',
+  amber:    '#d97706',
+  green:    '#2d6a4f',
+  grid:     'rgba(0,0,0,0.07)',
+};
+
+/* ── Helpers ── */
+const fmtN    = (n, d = 0) => new Intl.NumberFormat('en-US', { maximumFractionDigits: d }).format(n);
+const fmtSign = n => (n >= 0 ? '+' : '') + fmtN(n);
+const fmtUsd  = n => '$' + fmtN(Math.abs(n));
+const kk      = v => fmtN(v / 1000) + 'k';
+
+/* ── Main ── */
+async function init() {
+  try {
+    const [emissions, sacrifice, protocol] = await Promise.all([
+      fetch('./data/emissions.json').then(r => r.json()),
+      fetch('./data/sacrifice.json').then(r => r.json()),
+      fetch('./data/protocol.json').then(r => r.json()),
+    ]);
+
+    const upd = document.getElementById('updated-at');
+    if (upd) upd.textContent = 'Updated ' + emissions.updated_at;
+
+    renderEpochBanner(protocol, emissions);
+    renderStats(emissions, sacrifice);
+    renderEmissions(emissions);
+    renderSacrifice(sacrifice);
+    renderProtocol(protocol, emissions);
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById('error-banner').style.display = 'block';
+  }
+}
+
+/* ── Epoch banner ── */
+function renderEpochBanner(protocol, emissions) {
+  const epochs = protocol.epochs;
+  if (!epochs || epochs.length === 0) return;
+
+  const first = epochs[0].epoch_start;
+  const last  = epochs[epochs.length - 1].epoch_start;
+  const count = epochs.length;
+
+  const bootIdx   = epochs.findIndex(e => e.epoch_start === emissions.bootstrap_epoch) + 1;
+  const launchIdx = epochs.findIndex(e => e.epoch_start === emissions.launch_epoch) + 1;
+
+  document.getElementById('epoch-range-text').textContent =
+    `Epoch 1 (${first}) → Epoch ${count} (${last}) · ${count} epochs total`;
+
+  document.getElementById('epoch-bootstrap-pill').innerHTML =
+    `<span class="epoch-pill"><span class="dot" style="background:#e31c1c;opacity:0.5"></span>Bootstrap Epoch ${bootIdx}: ${emissions.bootstrap_epoch}</span>`;
+
+  document.getElementById('epoch-launch-pill').innerHTML =
+    `<span class="epoch-pill"><span class="dot" style="background:#e31c1c"></span>Launch Epoch ${launchIdx}: ${emissions.launch_epoch}</span>`;
+
+  document.getElementById('epoch-banner').style.display = 'flex';
+}
+
+/* ── Stat cards ── */
+function renderStats(em, sac) {
+  const { pairs, aero_price_launch } = em;
+  const boot  = pairs.reduce((s, p) => s + p.v2_bootstrap, 0);
+  const post  = pairs.reduce((s, p) => s + p.v2_launch + p.v3_launch, 0);
+  const delta = post - boot;
+  const pct   = Math.round(delta / boot * 100);
+  const usd   = delta * aero_price_launch;
+
+  setText('s-aero',    fmtSign(delta) + ' AERO');
+  setText('s-pct',     fmtSign(pct) + '%');
+  setText('s-usd',     '+' + fmtUsd(usd));
+  setText('s-usd-sub', 'At $' + aero_price_launch + '/AERO');
+  setText('s-sacrifice', fmtSign(sac.total_validated_delta) + ' AERO');
+  setText('f-aero',    fmtSign(delta));
+  setText('f-pct',     '+' + pct + '%');
+  setText('f-usd',     '+' + fmtUsd(usd));
+  setText('f-sacrifice', fmtN(Math.abs(sac.total_validated_delta)));
+}
+
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+/* ── Chart 1: Emissions ── */
+function renderEmissions(em) {
+  const { pairs } = em;
+  new Chart(document.getElementById('chart-emissions'), {
+    type: 'bar',
+    data: {
+      labels: pairs.map(p => p.label),
+      datasets: [
+        {
+          label: 'Bootstrap V2',
+          data: pairs.map(p => p.v2_bootstrap),
+          backgroundColor: C.grayLo,
+          borderColor: C.gray,
+          borderWidth: 1.5,
+          stack: 'boot',
+        },
+        {
+          label: 'Post-Launch V2',
+          data: pairs.map(p => p.v2_launch),
+          backgroundColor: C.blueLo,
+          borderColor: C.blue,
+          borderWidth: 1.5,
+          stack: 'launch',
+        },
+        {
+          label: 'Post-Launch V3',
+          data: pairs.map(p => p.v3_launch),
+          backgroundColor: C.accentLo,
+          borderColor: C.accent,
+          borderWidth: 1.5,
+          stack: 'launch',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          ...TT,
+          callbacks: {
+            label: ctx => ' ' + ctx.dataset.label + ': ' + fmtN(ctx.raw) + ' AERO',
+          },
+        },
+      },
+      scales: {
+        x: { stacked: true, grid: { color: C.grid }, ticks: { maxRotation: 35, minRotation: 25 } },
+        y: {
+          stacked: true,
+          grid: { color: C.grid },
+          ticks: { callback: kk },
+          title: { display: true, text: 'AERO / week', color: '#9f9b93' },
+        },
+      },
+    },
+  });
+}
+
+/* ── Chart 2: Sacrifice ── */
+function renderSacrifice(sac) {
+  const pools = [...sac.pools].sort((a, b) => a.delta - b.delta);
+  new Chart(document.getElementById('chart-sacrifice'), {
+    type: 'bar',
+    data: {
+      labels: pools.map(p => p.pool_label),
+      datasets: [{
+        label: 'Δ AERO/week',
+        data: pools.map(p => p.delta),
+        backgroundColor: pools.map(p => p.same_pair ? C.accentLo : C.grayLo),
+        borderColor:     pools.map(p => p.same_pair ? C.accent   : C.gray),
+        borderWidth: 1.5,
+        borderRadius: 4,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'nearest', intersect: true },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          ...TT,
+          callbacks: { label: ctx => ' ' + fmtSign(ctx.raw) + ' AERO/wk' },
+        },
+      },
+      scales: {
+        x: { grid: { color: C.grid }, ticks: { callback: kk } },
+        y: { grid: { color: C.grid }, ticks: { font: { size: 10.5 } } },
+      },
+    },
+  });
+}
+
+/* ── Chart 3: Protocol trend ── */
+function renderProtocol(protocol, em) {
+  const { epochs } = protocol;
+  new Chart(document.getElementById('chart-protocol'), {
+    type: 'bar',
+    data: {
+      labels: epochs.map(e => e.epoch_start.slice(5)),
+      datasets: [
+        {
+          type: 'bar',
+          label: 'AERO Minted',
+          data: epochs.map(e => e.aero_minted),
+          backgroundColor: epochs.map(e =>
+            e.epoch_start === em.launch_epoch    ? C.accent :
+            e.epoch_start === em.bootstrap_epoch ? 'rgba(227,28,28,0.38)' :
+            C.grayLo
+          ),
+          borderColor: 'transparent',
+          yAxisID: 'y',
+        },
+        {
+          type: 'line',
+          label: 'AERO Price',
+          data: epochs.map(e => e.aero_price),
+          borderColor: C.amber,
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: C.amber,
+          tension: 0.35,
+          yAxisID: 'y2',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          ...TT,
+          callbacks: {
+            label: ctx =>
+              ctx.datasetIndex === 0
+                ? ' ' + fmtN(ctx.raw) + ' AERO minted'
+                : ' $' + Number(ctx.raw).toFixed(4) + '/AERO',
+          },
+        },
+      },
+      scales: {
+        x: { grid: { color: C.grid }, ticks: { maxRotation: 45 } },
+        y: {
+          position: 'left',
+          grid: { color: C.grid },
+          ticks: { callback: v => fmtN(v / 1e6, 2) + 'M' },
+          title: { display: true, text: 'AERO/wk', color: '#9f9b93' },
+        },
+        y2: {
+          position: 'right',
+          grid: { drawOnChartArea: false },
+          ticks: { callback: v => '$' + Number(v).toFixed(2) },
+          title: { display: true, text: 'Price USD', color: '#9f9b93' },
+        },
+      },
+    },
+  });
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+name: Refresh Dune Data
+
+on:
+  schedule:
+    # Every Thursday 18:00 UTC — after Aerodrome epoch flip (~Thursday noon PT)
+    - cron: '0 18 * * 4'
+  workflow_dispatch:  # allow manual trigger from GitHub UI
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch Dune data
+        run: python scripts/fetch_dune.py
+        env:
+          DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
+
+      - name: Commit updated data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "chore: refresh data $(date -u +%Y-%m-%d)"
+          git push
