@@ -2,7 +2,20 @@
   "updated_at": "2026-04-23",
   "bootstrap_epoch": "2026-04-09",
   "launch_epoch": "2026-04-16",
-  "aero_price_bootstrap": 0.0,
-  "aero_price_launch": 0.0,
-  "pairs": []
+  "aero_price_bootstrap": 0.3688,
+  "aero_price_launch": 0.3998,
+  "pairs": [
+    { "label": "SOL/USDC",    "v2_bootstrap": 71251, "v2_launch": 31605, "v3_launch": 92888 },
+    { "label": "WETH/cbXRP",  "v2_bootstrap": 60757, "v2_launch": 27828, "v3_launch": 89088 },
+    { "label": "USDC/GHST",   "v2_bootstrap": 65555, "v2_launch": 34202, "v3_launch": 61782 },
+    { "label": "SOL/cbBTC",   "v2_bootstrap": 43987, "v2_launch": 15409, "v3_launch": 76217 },
+    { "label": "cbXRP/cbBTC", "v2_bootstrap": 43560, "v2_launch": 20710, "v3_launch": 67292 },
+    { "label": "UP/cbBTC",    "v2_bootstrap": 41384, "v2_launch": 26133, "v3_launch": 40335 },
+    { "label": "EURC/USDC",   "v2_bootstrap": 39057, "v2_launch": 25126, "v3_launch": 25467 },
+    { "label": "WETH/TIBBIR", "v2_bootstrap": 21787, "v2_launch": 19672, "v3_launch": 21149 },
+    { "label": "WETH/USDC",   "v2_bootstrap": 22164, "v2_launch": 15769, "v3_launch": 19473 },
+    { "label": "WETH/cbBTC",  "v2_bootstrap": 19943, "v2_launch": 16587, "v3_launch": 18647 },
+    { "label": "GIZA/USDC",   "v2_bootstrap": 20764, "v2_launch": 11382, "v3_launch": 19037 },
+    { "label": "USDC/cbBTC",  "v2_bootstrap": 11174, "v2_launch":  7020, "v3_launch":  6398 }
+  ]
 }
