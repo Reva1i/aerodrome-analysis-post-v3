@@ -141,11 +141,43 @@ def _write(path: Path, data: dict) -> None:
     print(f"  wrote {path.name}")
 
 
+def _validate(name: str, data: dict) -> None:
+    """Raise if fetched data looks empty or malformed — prevents clobbering good data."""
+    if name == "emissions":
+        if not data.get("pairs"):
+            raise ValueError("emissions: pairs list is empty — Dune query returned no rows")
+        if not data.get("aero_price_launch"):
+            raise ValueError("emissions: aero_price_launch is 0 — price data missing")
+    elif name == "protocol":
+        epochs = data.get("epochs", [])
+        if not epochs:
+            raise ValueError("protocol: epochs list is empty")
+        if not any(e.get("epoch_start") for e in epochs):
+            raise ValueError("protocol: all epoch_start values are empty strings")
+        if not any(e.get("aero_price") for e in epochs):
+            raise ValueError("protocol: all aero_price values are 0 — price data missing")
+    elif name == "sacrifice":
+        if not data.get("pools"):
+            raise ValueError("sacrifice: pools list is empty — Dune query returned no rows")
+
+
 def main() -> None:
     print("Fetching Dune data...")
-    _write(DATA_DIR / "emissions.json", build_emissions(fetch_results(EMISSIONS_QUERY_ID)))
-    _write(DATA_DIR / "protocol.json",  build_protocol(fetch_results(PROTOCOL_QUERY_ID)))
-    _write(DATA_DIR / "sacrifice.json", build_sacrifice(fetch_results(SACRIFICE_QUERY_ID)))
+    datasets = {
+        "emissions": (DATA_DIR / "emissions.json", build_emissions(fetch_results(EMISSIONS_QUERY_ID))),
+        "protocol":  (DATA_DIR / "protocol.json",  build_protocol(fetch_results(PROTOCOL_QUERY_ID))),
+        "sacrifice": (DATA_DIR / "sacrifice.json", build_sacrifice(fetch_results(SACRIFICE_QUERY_ID))),
+    }
+    ok = True
+    for name, (path, data) in datasets.items():
+        try:
+            _validate(name, data)
+            _write(path, data)
+        except ValueError as e:
+            print(f"  SKIPPED {name}: {e}", file=sys.stderr)
+            ok = False
+    if not ok:
+        sys.exit("One or more datasets failed validation — existing files kept intact.")
     print("Done.")
 
 
