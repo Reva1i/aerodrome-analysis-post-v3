@@ -30,9 +30,9 @@ HEADERS  = {"X-Dune-API-Key": API_KEY}
 DATA_DIR = Path(__file__).parent.parent / "data"
 
 # ── Replace with permanent (non-temp) query IDs after recreating on Dune ──
-EMISSIONS_QUERY_ID = 7360619
-PROTOCOL_QUERY_ID  = 7360620
-SACRIFICE_QUERY_ID = 7360622
+EMISSIONS_QUERY_ID = 7556807
+PROTOCOL_QUERY_ID  = 7556809
+SACRIFICE_QUERY_ID = 7556810
 # ──────────────────────────────────────────────────────────────────────────
 
 BOOTSTRAP_EPOCH = "2026-04-09"
