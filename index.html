@@ -323,6 +323,90 @@
     @media (max-width: 380px) {
       .stats-grid  { grid-template-columns: 1fr; }
     }
+
+    /* ── Section divider ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      padding: 4px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Tick spacing grid ── */
+    .ts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .ts-grid .chart-card h2 { font-size: 13px; }
+
+    /* ── Status chip ── */
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 20px;
+      padding: 2px 9px;
+      font-size: 11px;
+      font-weight: 600;
+      border: 1px solid;
+    }
+    .chip-green  { background: var(--green-lo);  border-color: rgba(45,106,79,0.25);  color: var(--green); }
+    .chip-yellow { background: #fef9c3;           border-color: #fde047;               color: #a16207; }
+    .chip-red    { background: var(--accent-lo);  border-color: rgba(227,28,28,0.25);  color: var(--accent); }
+
+    .pair-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .pair-summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+    }
+    .pair-summary-card .ps-pair {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-feature-settings: "ss01","ss03";
+    }
+    .pair-summary-card .ps-vol {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+    .pair-summary-card .ps-pct {
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .ps-pct.up   { color: var(--green); }
+    .ps-pct.down { color: var(--accent); }
+
+    @media (max-width: 960px) {
+      .ts-grid              { grid-template-columns: 1fr; }
+      .pair-summary-grid    { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .pair-summary-grid    { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -471,11 +555,39 @@
     </div>
   </div>
 
+  <!-- ── POST-V3 ONGOING TRACKING ── -->
+  <div class="section-label">Post-V3 Weekly Volume Tracking</div>
+
+  <!-- Pair summary cards -->
+  <div class="pair-summary-grid" id="pair-summary-grid"></div>
+
+  <!-- Chart 4: Weekly volume trajectory -->
+  <div class="chart-card">
+    <h2>Pair Volume Trajectory — Old + New Combined vs Baseline</h2>
+    <p class="chart-note">
+      Weekly volume ($M) across all Old + New pools per pair, from V3 Bootstrap through latest.
+      Dashed lines show each pair's pre-V3 weekly average baseline (Jan 5 – Apr 5).
+      <strong style="color:var(--text-light)">May 18 week is partial (4 of 7 days).</strong>
+    </p>
+    <div class="legend" id="vol-legend"></div>
+    <div style="position:relative;height:320px"><canvas id="chart-weekly-vol"></canvas></div>
+  </div>
+
+  <!-- Chart 5: Tick spacing share -->
+  <div class="chart-card">
+    <h2>Tick Spacing Share — V3 New Pool Volume Distribution</h2>
+    <p class="chart-note">
+      % of each pair's total V3 volume captured by each tick spacing. Wide-tick pools (CL50/CL10) have dominated since Wk4.
+      Only pairs with multiple V3 tick spacings shown.
+    </p>
+    <div class="ts-grid" id="ts-grid"></div>
+  </div>
+
 </main>
 
 <footer>
-  <span>Data: Dune Analytics · Q-7360619 · Q-7360620 · Q-7360622</span>
-  <span>Aerodrome V2→V3 SlipStream Migration · Base Chain · Apr 2026</span>
+  <span>Data: Dune Analytics · Q-7556807 · Q-7556809 · Q-7556810 · Q-7557410 (weekly vol)</span>
+  <span>Aerodrome V2→V3 SlipStream Migration · Base Chain · Updated May 2026</span>
 </footer>
 
 <script>
@@ -528,10 +640,11 @@ const kk      = v => fmtN(v / 1000) + 'k';
 /* ── Main ── */
 async function init() {
   try {
-    const [emissions, sacrifice, protocol] = await Promise.all([
+    const [emissions, sacrifice, protocol, weeklyVol] = await Promise.all([
       fetch('./data/emissions.json').then(r => r.json()),
       fetch('./data/sacrifice.json').then(r => r.json()),
       fetch('./data/protocol.json').then(r => r.json()),
+      fetch('./data/weekly_volume.json').then(r => r.json()),
     ]);
 
     const upd = document.getElementById('updated-at');
@@ -542,6 +655,9 @@ async function init() {
     renderEmissions(emissions);
     renderSacrifice(sacrifice);
     renderProtocol(protocol, emissions);
+    renderPairSummary(weeklyVol);
+    renderWeeklyVolume(weeklyVol);
+    renderTickSpacing(weeklyVol);
 
   } catch (err) {
     console.error(err);
@@ -760,6 +876,239 @@ function renderProtocol(protocol, em) {
         },
       },
     },
+  });
+}
+
+/* ── Pair colors ── */
+const PAIR_COLORS = {
+  'WETH/USDC':  { line: '#3b82f6', bg: 'rgba(59,130,246,0.12)'  },
+  'WETH/cbBTC': { line: '#d97706', bg: 'rgba(217,119,6,0.12)'   },
+  'USDC/cbBTC': { line: '#2d6a4f', bg: 'rgba(45,106,79,0.12)'   },
+  'EURC/USDC':  { line: '#7c3aed', bg: 'rgba(124,58,237,0.12)'  },
+  'EURC/WETH':  { line: '#0891b2', bg: 'rgba(8,145,178,0.12)'   },
+};
+
+/* ── Chart 4 helpers ── */
+function getPhaseLabels(wv) {
+  const all = new Map();
+  wv.pairs.forEach(p => p.weeks.forEach(w => all.set(w.week_start, w.phase)));
+  return [...all.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(e => e[1]);
+}
+
+function getWeekStarts(wv) {
+  const all = new Set();
+  wv.pairs.forEach(p => p.weeks.forEach(w => all.add(w.week_start)));
+  return [...all].sort();
+}
+
+/* ── Pair summary cards ── */
+function renderPairSummary(wv) {
+  const grid = document.getElementById('pair-summary-grid');
+  if (!grid) return;
+
+  wv.pairs.forEach(p => {
+    const weeks = p.weeks;
+    const latest = weeks[weeks.length - 1];
+    const prev   = weeks.length >= 2 ? weeks[weeks.length - 2] : null;
+    const pct    = latest.vs_baseline_pct;
+    const pctStr = (pct >= 0 ? '+' : '') + pct + '%';
+    const pctCls = pct >= 10 ? 'up' : 'down';
+
+    let chipCls, chipTxt;
+    if (pct > 10)       { chipCls = 'chip-green';  chipTxt = '🟢 Healthy'; }
+    else if (pct >= -20){ chipCls = 'chip-yellow'; chipTxt = '🟡 Watch'; }
+    else                { chipCls = 'chip-red';    chipTxt = '🔴 Needs incentives'; }
+
+    const trendArrow = prev && latest.total_vol_m > prev.total_vol_m ? '↑' : '↓';
+    const col = PAIR_COLORS[p.pair] || { line: C.gray };
+
+    const card = document.createElement('div');
+    card.className = 'pair-summary-card';
+    card.innerHTML = `
+      <div class="ps-pair" style="color:${col.line}">${p.pair}</div>
+      <div class="ps-vol">$${latest.total_vol_m}M <span style="font-size:14px;font-weight:600;color:${col.line}">${trendArrow}</span></div>
+      <div class="ps-pct ${pctCls}">${pctStr} vs baseline${latest.partial ? ' *partial' : ''}</div>
+      <span class="status-chip ${chipCls}">${chipTxt}</span>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/* ── Chart 4: Weekly volume trajectory ── */
+function renderWeeklyVolume(wv) {
+  const weekStarts = getWeekStarts(wv);
+  const labels     = getPhaseLabels(wv);
+
+  const datasets = wv.pairs.map(p => {
+    const col = PAIR_COLORS[p.pair] || { line: C.gray, bg: C.grayLo };
+    const volMap = Object.fromEntries(p.weeks.map(w => [w.week_start, w.total_vol_m]));
+    return {
+      label: p.pair,
+      data: weekStarts.map(ws => volMap[ws] ?? null),
+      borderColor: col.line,
+      backgroundColor: col.bg,
+      borderWidth: 2.5,
+      pointRadius: weekStarts.map(ws => {
+        const w = p.weeks.find(x => x.week_start === ws);
+        return w && w.partial ? 5 : 3;
+      }),
+      pointStyle: weekStarts.map(ws => {
+        const w = p.weeks.find(x => x.week_start === ws);
+        return w && w.partial ? 'triangle' : 'circle';
+      }),
+      pointBackgroundColor: col.line,
+      tension: 0.3,
+      fill: false,
+      spanGaps: false,
+    };
+  });
+
+  /* baseline annotation datasets (dashed horizontal per pair) */
+  wv.pairs.forEach(p => {
+    const col = PAIR_COLORS[p.pair] || { line: C.gray };
+    const wkSet = new Set(p.weeks.map(w => w.week_start));
+    datasets.push({
+      label: p.pair + ' baseline',
+      data: weekStarts.map(ws => wkSet.has(ws) ? p.baseline_avg_m : null),
+      borderColor: col.line,
+      borderWidth: 1,
+      borderDash: [4, 4],
+      pointRadius: 0,
+      tension: 0,
+      fill: false,
+      spanGaps: true,
+      hidden: false,
+    });
+  });
+
+  /* legend (only main lines) */
+  const legend = document.getElementById('vol-legend');
+  if (legend) {
+    wv.pairs.forEach(p => {
+      const col = PAIR_COLORS[p.pair] || { line: C.gray };
+      legend.innerHTML += `<div class="legend-item">
+        <div class="legend-dot" style="background:${col.line}"></div>${p.pair}
+        <span style="font-size:11px;color:var(--text-light)">(dashed = baseline)</span>
+      </div>`;
+    });
+  }
+
+  new Chart(document.getElementById('chart-weekly-vol'), {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          ...TT,
+          filter: item => !item.dataset.label.includes('baseline'),
+          callbacks: {
+            label: ctx => {
+              const pair = ctx.dataset.label;
+              const pairData = wv.pairs.find(p => p.pair === pair);
+              const ws = getWeekStarts(wv)[ctx.dataIndex];
+              const week = pairData?.weeks.find(w => w.week_start === ws);
+              const base = pairData?.baseline_avg_m;
+              const pct  = week?.vs_baseline_pct;
+              const partial = week?.partial ? ' *(partial)' : '';
+              return ` ${pair}: $${ctx.raw}M (${pct >= 0 ? '+' : ''}${pct}% vs $${base}M baseline)${partial}`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: { grid: { color: C.grid } },
+        y: {
+          grid: { color: C.grid },
+          ticks: { callback: v => '$' + v + 'M' },
+          title: { display: true, text: 'Volume USD/week', color: '#9f9b93' },
+        },
+      },
+    },
+  });
+}
+
+/* ── Chart 5: Tick spacing share ── */
+function renderTickSpacing(wv) {
+  const container = document.getElementById('ts-grid');
+  if (!container) return;
+
+  const TIER_COLORS = {
+    CL1:   { bg: C.grayLo,   border: C.gray   },
+    CL10:  { bg: C.accentLo, border: C.accent  },
+    CL50:  { bg: C.accentLo, border: C.accent  },
+    CL100: { bg: C.accentLo, border: C.accent  },
+  };
+
+  /* only pairs with 2+ tiers */
+  const multiTier = wv.tick_spacing.filter(p => p.tiers.length > 1);
+
+  multiTier.forEach(p => {
+    const canvasId = 'chart-ts-' + p.pair.replace('/', '-');
+
+    const card = document.createElement('div');
+    card.className = 'chart-card';
+    card.innerHTML = `
+      <h2>${p.pair}</h2>
+      <p class="chart-note" style="margin-bottom:10px">
+        V3 new-pool volume split by tick spacing. Wide tick (${p.tiers.filter(t => t !== 'CL1').join('/')}) has emerged as dominant.
+      </p>
+      <div style="position:relative;height:200px"><canvas id="${canvasId}"></canvas></div>
+    `;
+    container.appendChild(card);
+
+    const labels = p.weeks.map(w => w.phase);
+    const datasets = p.tiers.map(tier => {
+      const col = TIER_COLORS[tier] || { bg: C.grayLo, border: C.gray };
+      return {
+        label: tier,
+        data: p.weeks.map(w => w[tier]?.pct ?? 0),
+        backgroundColor: col.bg,
+        borderColor: col.border,
+        borderWidth: 1.5,
+        stack: 'ts',
+      };
+    });
+
+    new Chart(document.getElementById(canvasId), {
+      type: 'bar',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: { boxWidth: 10, font: { size: 11 }, padding: 10 },
+          },
+          tooltip: {
+            ...TT,
+            callbacks: {
+              label: ctx => {
+                const tier = ctx.dataset.label;
+                const wk   = p.weeks[ctx.dataIndex];
+                const vol  = wk[tier]?.vol_m ?? 0;
+                return ` ${tier}: ${ctx.raw}%  ($${vol}M)`;
+              },
+            },
+          },
+        },
+        scales: {
+          x: { stacked: true, grid: { color: C.grid }, ticks: { font: { size: 10 } } },
+          y: {
+            stacked: true,
+            min: 0, max: 100,
+            grid: { color: C.grid },
+            ticks: { callback: v => v + '%' },
+          },
+        },
+      },
+    });
   });
 }
 

@@ -1,0 +1,132 @@
+{
+  "updated_at": "2026-05-22",
+  "partial_week_note": "Week of 2026-05-18 is partial (4/7 days — data through May 22)",
+  "baseline_period": "2026-01-05 to 2026-04-05 (Old pools only)",
+  "pairs": [
+    {
+      "pair": "WETH/USDC",
+      "baseline_avg_m": 201.01,
+      "weeks": [
+        { "week_start": "2026-04-06", "phase": "Bootstrap", "old_vol_m": 97.00, "new_vol_m": 0, "total_vol_m": 97.00, "vs_baseline_pct": -51.7, "partial": false },
+        { "week_start": "2026-04-13", "phase": "Wk1", "old_vol_m": 73.59, "new_vol_m": 17.14, "total_vol_m": 90.73, "vs_baseline_pct": -54.9, "partial": false },
+        { "week_start": "2026-04-20", "phase": "Wk2", "old_vol_m": 30.96, "new_vol_m": 30.53, "total_vol_m": 61.49, "vs_baseline_pct": -69.4, "partial": false },
+        { "week_start": "2026-04-27", "phase": "Wk3", "old_vol_m": 21.73, "new_vol_m": 48.41, "total_vol_m": 70.14, "vs_baseline_pct": -65.1, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4", "old_vol_m": 40.36, "new_vol_m": 113.86, "total_vol_m": 154.22, "vs_baseline_pct": -23.3, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5", "old_vol_m": 37.67, "new_vol_m": 154.06, "total_vol_m": 191.73, "vs_baseline_pct": -4.6, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "old_vol_m": 6.76, "new_vol_m": 107.20, "total_vol_m": 113.96, "vs_baseline_pct": -43.3, "partial": true }
+      ]
+    },
+    {
+      "pair": "WETH/cbBTC",
+      "baseline_avg_m": 98.19,
+      "weeks": [
+        { "week_start": "2026-04-06", "phase": "Bootstrap", "old_vol_m": 110.29, "new_vol_m": 0, "total_vol_m": 110.29, "vs_baseline_pct": 12.3, "partial": false },
+        { "week_start": "2026-04-13", "phase": "Wk1", "old_vol_m": 74.39, "new_vol_m": 17.81, "total_vol_m": 92.20, "vs_baseline_pct": -6.1, "partial": false },
+        { "week_start": "2026-04-20", "phase": "Wk2", "old_vol_m": 30.60, "new_vol_m": 46.47, "total_vol_m": 77.08, "vs_baseline_pct": -21.5, "partial": false },
+        { "week_start": "2026-04-27", "phase": "Wk3", "old_vol_m": 15.91, "new_vol_m": 54.77, "total_vol_m": 70.68, "vs_baseline_pct": -28.0, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4", "old_vol_m": 16.30, "new_vol_m": 92.99, "total_vol_m": 109.28, "vs_baseline_pct": 11.3, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5", "old_vol_m": 7.42, "new_vol_m": 183.84, "total_vol_m": 191.26, "vs_baseline_pct": 94.8, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "old_vol_m": 1.84, "new_vol_m": 125.42, "total_vol_m": 127.26, "vs_baseline_pct": 29.6, "partial": true }
+      ]
+    },
+    {
+      "pair": "USDC/cbBTC",
+      "baseline_avg_m": 88.07,
+      "weeks": [
+        { "week_start": "2026-04-06", "phase": "Bootstrap", "old_vol_m": 88.39, "new_vol_m": 0, "total_vol_m": 88.39, "vs_baseline_pct": 0.4, "partial": false },
+        { "week_start": "2026-04-13", "phase": "Wk1", "old_vol_m": 62.04, "new_vol_m": 4.87, "total_vol_m": 66.91, "vs_baseline_pct": -24.0, "partial": false },
+        { "week_start": "2026-04-20", "phase": "Wk2", "old_vol_m": 42.16, "new_vol_m": 20.60, "total_vol_m": 62.76, "vs_baseline_pct": -28.7, "partial": false },
+        { "week_start": "2026-04-27", "phase": "Wk3", "old_vol_m": 34.49, "new_vol_m": 58.58, "total_vol_m": 93.07, "vs_baseline_pct": 5.7, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4", "old_vol_m": 37.71, "new_vol_m": 116.73, "total_vol_m": 154.44, "vs_baseline_pct": 75.4, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5", "old_vol_m": 31.18, "new_vol_m": 191.67, "total_vol_m": 222.85, "vs_baseline_pct": 153.0, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "old_vol_m": 20.56, "new_vol_m": 163.13, "total_vol_m": 183.69, "vs_baseline_pct": 108.6, "partial": true }
+      ]
+    },
+    {
+      "pair": "EURC/USDC",
+      "baseline_avg_m": 80.11,
+      "weeks": [
+        { "week_start": "2026-04-06", "phase": "Bootstrap", "old_vol_m": 118.15, "new_vol_m": 0, "total_vol_m": 118.15, "vs_baseline_pct": 47.5, "partial": false },
+        { "week_start": "2026-04-13", "phase": "Wk1", "old_vol_m": 89.39, "new_vol_m": 6.93, "total_vol_m": 96.32, "vs_baseline_pct": 20.2, "partial": false },
+        { "week_start": "2026-04-20", "phase": "Wk2", "old_vol_m": 66.11, "new_vol_m": 15.50, "total_vol_m": 81.62, "vs_baseline_pct": 1.9, "partial": false },
+        { "week_start": "2026-04-27", "phase": "Wk3", "old_vol_m": 64.71, "new_vol_m": 20.18, "total_vol_m": 84.89, "vs_baseline_pct": 6.0, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4", "old_vol_m": 65.37, "new_vol_m": 19.53, "total_vol_m": 84.90, "vs_baseline_pct": 6.0, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5", "old_vol_m": 54.35, "new_vol_m": 21.27, "total_vol_m": 75.62, "vs_baseline_pct": -5.6, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "old_vol_m": 45.58, "new_vol_m": 13.22, "total_vol_m": 58.80, "vs_baseline_pct": -26.6, "partial": true }
+      ]
+    },
+    {
+      "pair": "EURC/WETH",
+      "baseline_avg_m": 12.70,
+      "weeks": [
+        { "week_start": "2026-04-06", "phase": "Bootstrap", "old_vol_m": 16.68, "new_vol_m": 0, "total_vol_m": 16.68, "vs_baseline_pct": 31.4, "partial": false },
+        { "week_start": "2026-04-13", "phase": "Wk1", "old_vol_m": 19.40, "new_vol_m": 0, "total_vol_m": 19.40, "vs_baseline_pct": 52.8, "partial": false },
+        { "week_start": "2026-04-20", "phase": "Wk2", "old_vol_m": 16.39, "new_vol_m": 0, "total_vol_m": 16.39, "vs_baseline_pct": 29.1, "partial": false },
+        { "week_start": "2026-04-27", "phase": "Wk3", "old_vol_m": 13.09, "new_vol_m": 3.97, "total_vol_m": 17.06, "vs_baseline_pct": 34.4, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4", "old_vol_m": 9.19, "new_vol_m": 13.99, "total_vol_m": 23.18, "vs_baseline_pct": 82.5, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5", "old_vol_m": 5.11, "new_vol_m": 18.18, "total_vol_m": 23.29, "vs_baseline_pct": 83.4, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "old_vol_m": 1.19, "new_vol_m": 9.94, "total_vol_m": 11.13, "vs_baseline_pct": -12.3, "partial": true }
+      ]
+    }
+  ],
+  "tick_spacing": [
+    {
+      "pair": "WETH/USDC",
+      "tiers": ["CL1", "CL50"],
+      "weeks": [
+        { "week_start": "2026-04-13", "phase": "Wk1",    "CL1": { "vol_m": 17.14, "pct": 100.0 }, "CL50": { "vol_m": 0,      "pct": 0    }, "partial": false },
+        { "week_start": "2026-04-20", "phase": "Wk2",    "CL1": { "vol_m": 23.27, "pct": 76.2  }, "CL50": { "vol_m": 7.25,   "pct": 23.8 }, "partial": false },
+        { "week_start": "2026-04-27", "phase": "Wk3",    "CL1": { "vol_m": 23.56, "pct": 48.7  }, "CL50": { "vol_m": 24.86,  "pct": 51.3 }, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4",    "CL1": { "vol_m": 32.33, "pct": 28.4  }, "CL50": { "vol_m": 81.53,  "pct": 71.6 }, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5",    "CL1": { "vol_m": 27.30, "pct": 17.7  }, "CL50": { "vol_m": 126.77, "pct": 82.3 }, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "CL1": { "vol_m": 10.08, "pct": 9.4   }, "CL50": { "vol_m": 97.11,  "pct": 90.6 }, "partial": true  }
+      ]
+    },
+    {
+      "pair": "WETH/cbBTC",
+      "tiers": ["CL1", "CL10"],
+      "weeks": [
+        { "week_start": "2026-04-13", "phase": "Wk1",    "CL1": { "vol_m": 17.81, "pct": 100.0 }, "CL10": { "vol_m": 0,      "pct": 0    }, "partial": false },
+        { "week_start": "2026-04-20", "phase": "Wk2",    "CL1": { "vol_m": 39.26, "pct": 84.5  }, "CL10": { "vol_m": 7.21,   "pct": 15.5 }, "partial": false },
+        { "week_start": "2026-04-27", "phase": "Wk3",    "CL1": { "vol_m": 36.64, "pct": 66.9  }, "CL10": { "vol_m": 18.13,  "pct": 33.1 }, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4",    "CL1": { "vol_m": 27.72, "pct": 29.8  }, "CL10": { "vol_m": 65.27,  "pct": 70.2 }, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5",    "CL1": { "vol_m": 31.55, "pct": 17.2  }, "CL10": { "vol_m": 152.29, "pct": 82.8 }, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "CL1": { "vol_m": 21.59, "pct": 17.2  }, "CL10": { "vol_m": 103.83, "pct": 82.8 }, "partial": true  }
+      ]
+    },
+    {
+      "pair": "USDC/cbBTC",
+      "tiers": ["CL1", "CL50"],
+      "weeks": [
+        { "week_start": "2026-04-13", "phase": "Wk1",    "CL1": { "vol_m": 4.87,  "pct": 100.0 }, "CL50": { "vol_m": 0,      "pct": 0    }, "partial": false },
+        { "week_start": "2026-04-20", "phase": "Wk2",    "CL1": { "vol_m": 11.59, "pct": 56.3  }, "CL50": { "vol_m": 9.00,   "pct": 43.7 }, "partial": false },
+        { "week_start": "2026-04-27", "phase": "Wk3",    "CL1": { "vol_m": 22.96, "pct": 39.2  }, "CL50": { "vol_m": 35.62,  "pct": 60.8 }, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4",    "CL1": { "vol_m": 21.21, "pct": 18.2  }, "CL50": { "vol_m": 95.52,  "pct": 81.8 }, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5",    "CL1": { "vol_m": 30.36, "pct": 15.8  }, "CL50": { "vol_m": 161.30, "pct": 84.2 }, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "CL1": { "vol_m": 25.10, "pct": 15.4  }, "CL50": { "vol_m": 138.03, "pct": 84.6 }, "partial": true  }
+      ]
+    },
+    {
+      "pair": "EURC/USDC",
+      "tiers": ["CL1"],
+      "weeks": [
+        { "week_start": "2026-04-13", "phase": "Wk1",    "CL1": { "vol_m": 6.93,  "pct": 100.0 }, "partial": false },
+        { "week_start": "2026-04-20", "phase": "Wk2",    "CL1": { "vol_m": 15.50, "pct": 100.0 }, "partial": false },
+        { "week_start": "2026-04-27", "phase": "Wk3",    "CL1": { "vol_m": 20.18, "pct": 100.0 }, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4",    "CL1": { "vol_m": 19.53, "pct": 100.0 }, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5",    "CL1": { "vol_m": 21.27, "pct": 100.0 }, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "CL1": { "vol_m": 13.22, "pct": 100.0 }, "partial": true  }
+      ]
+    },
+    {
+      "pair": "EURC/WETH",
+      "tiers": ["CL100"],
+      "weeks": [
+        { "week_start": "2026-04-27", "phase": "Wk3",    "CL100": { "vol_m": 3.97,  "pct": 100.0 }, "partial": false },
+        { "week_start": "2026-05-04", "phase": "Wk4",    "CL100": { "vol_m": 13.99, "pct": 100.0 }, "partial": false },
+        { "week_start": "2026-05-11", "phase": "Wk5",    "CL100": { "vol_m": 18.18, "pct": 100.0 }, "partial": false },
+        { "week_start": "2026-05-18", "phase": "May18*", "CL100": { "vol_m": 9.94,  "pct": 100.0 }, "partial": true  }
+      ]
+    }
+  ]
+}
